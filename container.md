@@ -20,6 +20,8 @@
 - `docker container run --publish 80:80 --detach --name webhost nginx`
     - specify the container name
     - default names are random
+- `docker container run --publish 80:80 -d --rm --name webhost nginx`
+    - `--rm` means the container will be removed when the container ends (when you don't want to keep the container)
 - `docker container ls`
     - list running containers
 - `docker container ls -a`
