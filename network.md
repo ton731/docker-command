@@ -1,4 +1,4 @@
-### Docker Networks: CLI Management
+### Docker Networks: CLI Management of Virtual Networks
 - `docker network ls`
     - show networks
     - network bridge: default Docker virtual network, which is NAT'ed behind the HOST IP
@@ -19,3 +19,11 @@
 - `docker network disconnect <network> <container>`
     - removes a NIC from a container on a specific virtual network
 
+
+### DNS and how Containers find each other
+- Static IP's and using IP's for talking to containers is an anti-pattern. Because when you stop and restart the container, the IP may change. Do your best to avoid it.
+- DNS naming is the solution. Docker uses the container names as the equivalent of a host name for containers talking to each other.
+- `docker container run -d --name nginx1 --network my_app_net nginx:alpine`
+- `docker container run -d --name nginx2 --network my_app_net nginx:alpine`
+- `docker container exec -it nginx1 ping new nginx2`
+- `docker container exec -it nginx2 ping new nginx1`
